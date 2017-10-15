@@ -1,0 +1,40 @@
+#KeyHistory
+#InstallMouseHook
+#usehook
+
+;==========================================
+;--------Reddit links---------
+^!l::                 ;   ctrl + alt(!) + "L"
+    if (InStr(Clipboard, "www.")) {           ; If a link is in the clipboard
+
+        linkVar := Clipboard ; Move clipboard data into holder variable
+        linkVarLength := StrLen(linkVar) + 3
+
+        Clipboard := ""
+        SendPlay, ^c ; Copy the currently selected string, if any
+
+        ; If the clipboard is empty
+        if (Clipboard == "") {
+            Send, [](%linkVar%){Left %linkVarLenght%}
+        }
+        ; Otherwise paste what was copied
+        else {
+            Send, [%clipboard%](%linkVar%)
+        }
+		Clipboard := linkVar  ; Restore original clipboard
+    }
+return  
+;==========================================
+
+
+
+#s::        ;    Saves and reruns fresh version of script if running. GOOD FOR TESTING CHANGES ON THE FLY
+Send, ^s     ;   Ctrl + 's'
+Sleep 10
+Reload %A_ScriptFullPath%
+Return
+
+#b::	;	WIN + b
+send, +{f10}   ; keyboard rt click equivalent
+Send, b        ;  sometimes this will start select ad Block element, in ublocck origin extension
+return	
