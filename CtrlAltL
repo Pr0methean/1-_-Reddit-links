@@ -5,7 +5,7 @@
 ;==========================================
 ;--------Reddit links---------
 ^!l::                 ;   ctrl + alt(!) + "L"
-    if (InStr(Clipboard, "http://")) | (InStr(Clipboard, "https://")) {           ; If a link is in the clipboard
+    if (InStr(Clipboard, "http://") | InStr(Clipboard, "https://")) {           ; If a link is in the clipboard
 
         linkVar := Clipboard ; Move clipboard data into holder variable
         linkVarLength := StrLen(linkVar) + 3
